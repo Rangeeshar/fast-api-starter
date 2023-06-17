@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test123
+      - POSTGRES_DB=test_db
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+
+  fast-api-app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_SERVER=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test123
+      - POSTGRES_DB=test_db
+      - POOL_SIZE=5
+      - MAX_OVERFLOW=-1
+      - POOL_PRE_PING=True
+      - ECHO=False
+      - POOL_RECYCLE_IN_SECONDS=3600
+      - ECHO_POOL=False
+      - POOL_RESET_ON_RETURN=rollback
+      - POOL_TIMEOUT_IN_SECONDS=30
+      - POOL=~class:`~sqlalchemy.pool.QueuePool`
+    restart: on-failure

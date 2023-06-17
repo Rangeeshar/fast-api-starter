@@ -1,0 +1,2 @@
+**payment_record_line
+payment_id\tbank_name\trouting_number\taccount_number\tpayment_amount_in_cents
