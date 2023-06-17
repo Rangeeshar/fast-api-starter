@@ -34,6 +34,7 @@
 
 ## Misc
 
+- Have done only postman testing and didnt write anything for unit test but if given more time we could perform stubbing and create test case as well.
 - The answer to the assignment problem is in app/services/v1/claim/claim_service.py as a docstring.
 
 ## Any issue ?
